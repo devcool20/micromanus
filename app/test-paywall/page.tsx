@@ -14,7 +14,7 @@ function DoubleChevronLogo({ className = "w-6 h-6 text-charcoal" }: { className?
   );
 }
 
-export default function PaywallPage() {
+export default function TestPaywallPage() {
   const router = useRouter();
   const [couponCode, setCouponCode] = useState('');
   const [loadingCheckout, setLoadingCheckout] = useState(false);
@@ -89,7 +89,7 @@ export default function PaywallPage() {
       <header className="border-b border-charcoal/5 bg-white/70 backdrop-blur-md py-3 px-6 md:px-12 flex justify-between items-center select-none shadow-sm shadow-charcoal/[0.01] shrink-0">
         <div className="flex items-center gap-2">
           <DoubleChevronLogo className="h-5.5 w-5.5 text-charcoal" />
-          <span className="font-serif text-base font-semibold tracking-tight text-charcoal">MicroManus</span>
+          <span className="font-serif text-base font-semibold tracking-tight text-charcoal">MicroManus (Test View)</span>
         </div>
         <button
           onClick={handleSignOut}

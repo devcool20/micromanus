@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createAdminClient } from '@/utils/supabase/admin';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key', {
-  apiVersion: '2025-01-27' as any,
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key');
 
 export async function POST(request: Request) {
   const body = await request.text();

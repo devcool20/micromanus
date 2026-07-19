@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@/utils/supabase/server';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key', {
-  apiVersion: '2025-01-27' as any, // Use standard API version or newest
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key');
 
 export async function POST(request: Request) {
   try {
