@@ -44,13 +44,13 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="w-screen min-h-screen md:h-screen overflow-hidden flex flex-col md:grid md:grid-cols-12 bg-offwhite text-charcoal font-sans relative select-none">
+    <div className="w-screen min-h-screen md:h-screen overflow-y-auto md:overflow-hidden flex flex-col md:grid md:grid-cols-12 bg-offwhite text-charcoal font-sans relative select-none">
       {/* Subtle Background Glows */}
       <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-orchid/15 to-lavender/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-lavender/20 to-orchid/10 blur-[100px] pointer-events-none" />
 
       {/* Left Panel: Brand info & Auth */}
-      <div className="col-span-12 md:col-span-5 flex flex-col justify-between h-full min-h-0 p-6 md:p-8 lg:p-10 z-10 bg-offwhite overflow-hidden">
+      <div className="col-span-12 md:col-span-5 flex flex-col justify-between min-h-fit md:h-full p-6 md:p-8 lg:p-10 z-10 bg-offwhite overflow-hidden">
         {/* Top: Logo & Branding */}
         <div className="flex items-center gap-2.5 shrink-0">
           <DoubleChevronLogo className="w-7 h-7 text-charcoal" />
@@ -144,7 +144,7 @@ export default function LandingPage() {
       </div>
 
       {/* Right Panel: Interactive MacBook Demo */}
-      <div className="col-span-12 md:col-span-7 h-full bg-gradient-to-br from-lavender/30 via-orchid/20 to-lavender/30 border-l border-charcoal/5 flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+      <div className="col-span-12 md:col-span-7 min-h-fit md:h-full bg-gradient-to-br from-lavender/30 via-orchid/20 to-lavender/30 border-t md:border-t-0 md:border-l border-charcoal/5 flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
         {/* Abstract Background Design Element */}
         <div className="absolute w-[80%] aspect-square rounded-full border border-charcoal/[0.03] scale-110 pointer-events-none" />
         <div className="absolute w-[60%] aspect-square rounded-full border border-charcoal/[0.04] scale-90 pointer-events-none" />

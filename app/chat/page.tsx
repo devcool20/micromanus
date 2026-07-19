@@ -22,7 +22,8 @@ import {
   Brain,
   History,
   Trash2,
-  AlertTriangle
+  AlertTriangle,
+  Menu
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -347,7 +348,20 @@ function ChatComponent() {
   const [composerInput, setComposerInput] = useState('');
   
   // Collapsible Sidebar State
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth < 768) {
+        setIsSidebarCollapsed(true);
+      } else {
+        setIsSidebarCollapsed(false);
+      }
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Custom Model Dropdown state
   const [modelMenuOpen, setModelMenuOpen] = useState(false);
@@ -819,8 +833,18 @@ function ChatComponent() {
   return (
     <div className="flex-grow bg-[#181818] text-[#F9F9F9] flex font-sans h-screen overflow-hidden">
       
+      {/* Mobile Sidebar backdrop */}
+      {!isSidebarCollapsed && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+          onClick={() => setIsSidebarCollapsed(true)}
+        />
+      )}
+      
       {/* 1. Sidebar (Threads List) */}
-      <aside className={`bg-[#131313] border-r border-neutral-900 flex flex-col justify-between shrink-0 transition-all duration-300 ${isSidebarCollapsed ? 'w-16' : 'w-64'}`}>
+      <aside className={`bg-[#131313] border-r border-neutral-900 flex flex-col justify-between shrink-0 transition-all duration-300 fixed inset-y-0 left-0 z-50 md:relative ${
+        isSidebarCollapsed ? '-translate-x-full md:translate-x-0 md:w-16' : 'translate-x-0 w-64'
+      }`}>
         <div className="flex flex-col flex-1 overflow-y-auto min-h-0 scrollbar-none">
           {/* Sidebar Header */}
           <div className={`p-4 flex items-center justify-between border-b border-neutral-900/50 bg-[#131313] ${isSidebarCollapsed ? 'flex-col gap-3 py-4' : ''}`}>
@@ -957,9 +981,16 @@ function ChatComponent() {
         )}
 
         {/* Chat Area Header */}
-        <header className="border-b border-neutral-900 bg-[#161616]/70 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center z-30 shrink-0 select-none">
-          <div className="relative flex items-center">
-            <span className="text-[10px] text-neutral-550 font-bold uppercase tracking-wider font-sans mr-2.5">Model:</span>
+        <header className="border-b border-neutral-900 bg-[#161616]/70 backdrop-blur-md py-4 px-4 md:px-10 flex justify-between items-center z-30 shrink-0 select-none">
+          <div className="relative flex items-center gap-2">
+            {/* Mobile Hamburger menu toggle */}
+            <button
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              className="md:hidden text-neutral-400 hover:text-white transition p-1 hover:bg-neutral-900 rounded cursor-pointer mr-1.5"
+            >
+              <Menu className="h-4.5 w-4.5" />
+            </button>
+            <span className="text-[10px] text-neutral-550 font-bold uppercase tracking-wider font-sans hidden sm:inline mr-1">Model:</span>
             <div className="relative">
               <button
                 type="button"

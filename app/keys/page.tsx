@@ -17,7 +17,8 @@ import {
   ChevronRight,
   BarChart3,
   LogOut,
-  Brain
+  Brain,
+  Menu
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -54,7 +55,20 @@ export default function KeysPage() {
   const router = useRouter();
   
   // Sidebar states
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth < 768) {
+        setIsSidebarCollapsed(true);
+      } else {
+        setIsSidebarCollapsed(false);
+      }
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const [threads, setThreads] = useState<ChatThread[]>([]);
   const [loadingThreads, setLoadingThreads] = useState(true);
 
@@ -248,8 +262,18 @@ export default function KeysPage() {
   return (
     <div className="flex bg-[#181818] text-[#F9F9F9] font-sans h-screen overflow-hidden w-screen">
       
+      {/* Mobile Sidebar backdrop */}
+      {!isSidebarCollapsed && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+          onClick={() => setIsSidebarCollapsed(true)}
+        />
+      )}
+
       {/* 1. Sidebar (Threads List) */}
-      <aside className={`bg-[#131313] border-r border-neutral-900 flex flex-col justify-between shrink-0 transition-all duration-300 ${isSidebarCollapsed ? 'w-16' : 'w-64'}`}>
+      <aside className={`bg-[#131313] border-r border-neutral-900 flex flex-col justify-between shrink-0 transition-all duration-300 fixed inset-y-0 left-0 z-50 md:relative ${
+        isSidebarCollapsed ? '-translate-x-full md:translate-x-0 md:w-16' : 'translate-x-0 w-64'
+      }`}>
         <div className="flex flex-col flex-1 overflow-y-auto min-h-0 scrollbar-none">
           {/* Sidebar Header */}
           <div className={`p-4 flex items-center justify-between border-b border-neutral-900/50 bg-[#131313] ${isSidebarCollapsed ? 'flex-col gap-3 py-4' : ''}`}>
@@ -365,16 +389,24 @@ export default function KeysPage() {
       {/* 2. Main content Area */}
       <section className="flex-1 flex flex-col justify-between overflow-hidden relative bg-[#181818]">
         {/* Navigation Header */}
-        <header className="border-b border-neutral-900 bg-[#161616]/70 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center z-50 shrink-0 select-none">
-          <div className="flex items-center gap-6">
-            <Link href="/chat" className="flex items-center gap-2 text-neutral-450 hover:text-white transition-colors duration-200">
+        <header className="border-b border-neutral-900 bg-[#161616]/70 backdrop-blur-md py-4 px-4 md:px-10 flex justify-between items-center z-50 shrink-0 select-none">
+          <div className="flex items-center gap-3 sm:gap-6 min-w-0">
+            {/* Mobile Hamburger menu toggle */}
+            <button
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              className="md:hidden text-neutral-400 hover:text-white transition p-1 hover:bg-neutral-900 rounded cursor-pointer mr-1 shrink-0"
+            >
+              <Menu className="h-4.5 w-4.5" />
+            </button>
+            <Link href="/chat" className="flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors duration-200 shrink-0">
               <ArrowLeft className="h-4 w-4" />
-              <span className="text-xs font-semibold">Back to Chat</span>
+              <span className="text-xs font-semibold hidden sm:inline">Back</span>
             </Link>
-            <div className="h-px w-6 bg-neutral-800" />
-            <div className="flex items-center gap-2">
-              <DoubleChevronLogo className="h-5.5 w-5.5 text-neutral-200" />
-              <span className="font-serif text-sm font-semibold tracking-tight text-neutral-100">API Key Manager</span>
+            <div className="h-px w-3 sm:w-6 bg-neutral-800 shrink-0" />
+            <div className="flex items-center gap-2 min-w-0">
+              <DoubleChevronLogo className="h-5.5 w-5.5 text-neutral-200 shrink-0" />
+              <span className="font-serif text-sm font-semibold tracking-tight text-neutral-100 hidden sm:inline">API Key Manager</span>
+              <span className="font-serif text-sm font-semibold tracking-tight text-neutral-100 inline sm:hidden">Keys</span>
             </div>
           </div>
 
@@ -604,7 +636,7 @@ export default function KeysPage() {
                     {keys.map((k) => (
                       <div
                         key={k.id}
-                        className={`p-4 border rounded-xl flex items-center justify-between transition ${
+                        className={`p-4 border rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition ${
                           k.is_default ? 'border-orchid/30 bg-orchid/5' : 'border-white/5 hover:border-white/10 bg-[#111]'
                         }`}
                       >

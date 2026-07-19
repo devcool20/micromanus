@@ -17,6 +17,13 @@
   --color-charcoal: #1F1F1F;
   --color-lavender: #F1CDF9;
   --color-orchid: #F1A5EC;
+  --color-neutral-250: #e2e2e2;
+  --color-neutral-450: #9c9c9c;
+  --color-neutral-455: #909090;
+  --color-neutral-550: #737373;
+  --color-neutral-555: #6a6a6a;
+  --color-neutral-605: #525252;
+  --color-neutral-650: #404040;
   --font-serif: var(--font-serif), Georgia, serif;
 }
 
