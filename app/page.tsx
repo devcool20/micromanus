@@ -101,39 +101,41 @@ export default function LandingPage() {
         </div>
 
         {/* Bottom: Auth Buttons */}
-        <div className="flex flex-col gap-2.5 w-full max-w-sm pt-4 border-t border-charcoal/5 shrink-0">
-          <button
-            onClick={() => handleOAuthLogin('github')}
-            disabled={!!loadingProvider}
-            className="flex items-center justify-center gap-2.5 w-full bg-charcoal hover:bg-charcoal/90 hover:scale-[1.015] active:scale-[0.99] text-offwhite font-semibold py-2.5 px-4 rounded-xl border border-charcoal transition-all duration-200 shadow-md shadow-charcoal/5 cursor-pointer"
-          >
-            {loadingProvider === 'github' ? (
-              <div className="h-4 w-4 border-2 border-offwhite border-t-transparent rounded-full animate-spin" />
-            ) : (
-              <svg className="h-4.5 w-4.5 fill-current" viewBox="0 0 24 24">
-                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" />
-              </svg>
-            )}
-            <span>Sign in with GitHub</span>
-          </button>
+        <div className="flex flex-col gap-3 w-full max-w-sm pt-4 border-t border-charcoal/5 shrink-0">
+          <div className="grid grid-cols-2 gap-3 w-full">
+            <button
+              onClick={() => handleOAuthLogin('github')}
+              disabled={!!loadingProvider}
+              className="flex items-center justify-center gap-2 w-full bg-charcoal hover:bg-charcoal/90 hover:scale-[1.01] active:scale-[0.99] text-offwhite font-semibold py-2.5 px-3 rounded-xl border border-charcoal transition-all duration-200 shadow-md shadow-charcoal/5 cursor-pointer text-xs"
+            >
+              {loadingProvider === 'github' ? (
+                <div className="h-4 w-4 border-2 border-offwhite border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <svg className="h-4 w-4 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" />
+                </svg>
+              )}
+              <span className="truncate">GitHub</span>
+            </button>
 
-          <button
-            onClick={() => handleOAuthLogin('google')}
-            disabled={!!loadingProvider}
-            className="flex items-center justify-center gap-2.5 w-full bg-offwhite hover:bg-neutral-100 hover:scale-[1.015] active:scale-[0.99] text-charcoal font-semibold py-2.5 px-4 rounded-xl border border-charcoal/15 transition-all duration-200 shadow-sm cursor-pointer"
-          >
-            {loadingProvider === 'google' ? (
-              <div className="h-4 w-4 border-2 border-charcoal border-t-transparent rounded-full animate-spin" />
-            ) : (
-              <svg className="h-4.5 w-4.5" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69a5.79 5.79 0 0 1-2.49 3.81v3.13h3.97c2.3-2.13 3.57-5.26 3.57-8.79z" />
-                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.97-3.13c-1.1.73-2.5 1.16-3.96 1.16-3.05 0-5.63-2.06-6.55-4.83H1.38v3.23A12 12 0 0 0 12 24z" />
-                <path fill="#FBBC05" d="M5.45 14.29a7.12 7.12 0 0 1 0-4.58V6.48H1.38a12 12 0 0 0 0 11.04l4.07-3.23z" />
-                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43A11.96 11.96 0 0 0 12 0 12 12 0 0 0 1.38 6.48l4.07 3.23c.92-2.77 3.5-4.96 6.55-4.96z" />
-              </svg>
-            )}
-            <span>Continue with Google</span>
-          </button>
+            <button
+              onClick={() => handleOAuthLogin('google')}
+              disabled={!!loadingProvider}
+              className="flex items-center justify-center gap-2 w-full bg-offwhite hover:bg-neutral-100 hover:scale-[1.01] active:scale-[0.99] text-charcoal font-semibold py-2.5 px-3 rounded-xl border border-charcoal/15 transition-all duration-200 shadow-sm cursor-pointer text-xs"
+            >
+              {loadingProvider === 'google' ? (
+                <div className="h-4 w-4 border-2 border-charcoal border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69a5.79 5.79 0 0 1-2.49 3.81v3.13h3.97c2.3-2.13 3.57-5.26 3.57-8.79z" />
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.97-3.13c-1.1.73-2.5 1.16-3.96 1.16-3.05 0-5.63-2.06-6.55-4.83H1.38v3.23A12 12 0 0 0 12 24z" />
+                  <path fill="#FBBC05" d="M5.45 14.29a7.12 7.12 0 0 1 0-4.58V6.48H1.38a12 12 0 0 0 0 11.04l4.07-3.23z" />
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43A11.96 11.96 0 0 0 12 0 12 12 0 0 0 1.38 6.48l4.07 3.23c.92-2.77 3.5-4.96 6.55-4.96z" />
+                </svg>
+              )}
+              <span className="truncate">Google</span>
+            </button>
+          </div>
           
           <div className="text-[9.5px] text-charcoal/40 text-center mt-1 tracking-wide">
             By signing in, you agree to our usage-based credit terms.
@@ -148,9 +150,9 @@ export default function LandingPage() {
         <div className="absolute w-[60%] aspect-square rounded-full border border-charcoal/[0.04] scale-90 pointer-events-none" />
 
         {/* MacBook Container */}
-        <div className="w-full max-w-2xl flex flex-col items-center justify-center relative">
+        <div className="w-full max-w-2xl flex flex-col items-center justify-center relative select-none">
           {/* MacBook Screen */}
-          <div className="w-[95%] md:w-full bg-[#1e1e1e] rounded-2xl p-2 pb-2.5 shadow-2xl border border-neutral-800/80 aspect-[16/10] flex flex-col relative overflow-hidden transition-all duration-500 hover:scale-[1.01]">
+          <div className="w-[95%] md:w-full bg-[#1e1e1e] rounded-2xl p-2 pb-2.5 shadow-2xl border border-neutral-800/80 aspect-[16/10] flex flex-col relative overflow-hidden">
             {/* Gloss Reflection overlay */}
             <div className="absolute top-0 left-0 right-0 h-[45%] bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none transform -skew-y-6 origin-top-left z-20" />
             
@@ -163,10 +165,10 @@ export default function LandingPage() {
             <div className="flex-1 bg-[#1a1a1a] rounded-lg overflow-hidden border border-neutral-900 flex relative text-left min-h-0 select-none">
               
               {/* Mock App Left Sidebar */}
-              <div className="w-[130px] sm:w-[150px] bg-[#141414] border-r border-neutral-900 flex flex-col justify-between p-3.5 shrink-0">
+              <div className="w-[130px] sm:w-[150px] bg-[#141414] border-r border-neutral-900 flex flex-col justify-between p-3.5 shrink-0 select-none">
                 <div>
                   {/* Branding in mini form */}
-                  <div className="flex items-center gap-1.5 mb-5">
+                  <div className="flex items-center gap-1.5 mb-5 select-none">
                     <DoubleChevronLogo className="w-4 h-4 text-neutral-200" />
                     <span className="font-serif text-[10px] font-semibold text-neutral-200">
                       MicroManus
@@ -174,49 +176,73 @@ export default function LandingPage() {
                   </div>
 
                   {/* New Research Button */}
-                  <div className="w-full py-1.5 px-2 bg-neutral-900 border border-neutral-800 text-[8px] font-semibold text-neutral-400 rounded-md flex items-center justify-center gap-1">
+                  <button
+                    type="button"
+                    onClick={(e) => e.preventDefault()}
+                    className="w-full py-1.5 px-2 bg-[#1e1e1e] hover:bg-[#252525] border border-white/5 text-[8.5px] font-bold text-neutral-300 hover:text-neutral-100 transition-all rounded-md flex items-center justify-center gap-1 cursor-pointer select-none active:scale-[0.97]"
+                  >
                     <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
                     New Research
-                  </div>
+                  </button>
 
                   {/* Simulated History list */}
-                  <div className="mt-5 space-y-2">
+                  <div className="mt-5 space-y-2 select-none">
                     <div className="text-[7.5px] font-bold text-neutral-600 uppercase tracking-widest">
                       Recent Queries
                     </div>
                     <div className="space-y-1">
-                      <div className="px-2 py-1 bg-neutral-850 text-neutral-200 rounded text-[8px] flex items-center gap-1.5 font-medium truncate">
+                      <button
+                        type="button"
+                        onClick={(e) => e.preventDefault()}
+                        className="w-full text-left px-2 py-1 bg-[#1e1e1e]/60 hover:bg-[#1e1e1e] text-neutral-200 transition-colors rounded text-[8px] flex items-center gap-1.5 font-medium truncate cursor-pointer"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-orchid shrink-0" />
                         Solid State Density
-                      </div>
-                      <div className="px-2 py-1 text-neutral-500 text-[8px] flex items-center gap-1.5 truncate">
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => e.preventDefault()}
+                        className="w-full text-left px-2 py-1 text-neutral-500 hover:text-neutral-350 hover:bg-neutral-900/40 transition-colors rounded text-[8px] flex items-center gap-1.5 truncate cursor-pointer"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-neutral-700 shrink-0" />
                         CA Forest Fires
-                      </div>
-                      <div className="px-2 py-1 text-neutral-500 text-[8px] flex items-center gap-1.5 truncate">
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => e.preventDefault()}
+                        className="w-full text-left px-2 py-1 text-neutral-500 hover:text-neutral-350 hover:bg-neutral-900/40 transition-colors rounded text-[8px] flex items-center gap-1.5 truncate cursor-pointer"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-neutral-700 shrink-0" />
                         Steel Carbon Footprint
-                      </div>
+                      </button>
                     </div>
                   </div>
                 </div>
 
                 {/* Footer buttons */}
-                <div className="space-y-1.5 border-t border-neutral-850/50 pt-2.5 text-neutral-500 text-[8px]">
-                  <div className="flex items-center gap-1.5 px-1 py-0.5">
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <div className="space-y-1 border-t border-neutral-850/50 pt-2.5 text-neutral-500 text-[8px] select-none">
+                  <button
+                    type="button"
+                    onClick={(e) => e.preventDefault()}
+                    className="w-full text-left flex items-center gap-1.5 px-1.5 py-1 hover:bg-neutral-900/40 hover:text-neutral-300 transition-colors rounded cursor-pointer"
+                  >
+                    <svg className="w-3 h-3 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                     </svg>
                     API Key Manager
-                  </div>
-                  <div className="flex items-center gap-1.5 px-1 py-0.5">
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => e.preventDefault()}
+                    className="w-full text-left flex items-center gap-1.5 px-1.5 py-1 hover:bg-neutral-900/40 hover:text-neutral-300 transition-colors rounded cursor-pointer"
+                  >
+                    <svg className="w-3 h-3 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                     Analytics & Billing
-                  </div>
+                  </button>
                 </div>
               </div>
 
@@ -354,7 +380,11 @@ export default function LandingPage() {
                                 <div className="text-[7.5px] text-neutral-500 font-sans">3 pages • 242 KB • PDF</div>
                               </div>
                             </div>
-                            <button className="px-2 py-1 bg-orchid hover:bg-orchid/90 text-charcoal font-bold text-[7.5px] uppercase tracking-wider rounded transition-colors duration-300">
+                            <button
+                              type="button"
+                              onClick={(e) => e.preventDefault()}
+                              className="px-2 py-1 bg-orchid hover:bg-orchid/90 hover:scale-[1.02] active:scale-[0.98] text-charcoal font-bold text-[7.5px] uppercase tracking-wider rounded transition-all cursor-pointer select-none"
+                            >
                               Download
                             </button>
                           </div>
@@ -363,10 +393,10 @@ export default function LandingPage() {
                     </div>
                   )}
                 </div>
-
+ 
                 {/* Dashboard bottom composer input */}
-                <div className="p-3.5 border-t border-neutral-900 bg-[#161616] flex items-center shrink-0">
-                  <div className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-2.5 py-1.5 flex items-center justify-between text-neutral-500 text-[8px]">
+                <div className="p-3.5 border-t border-neutral-900 bg-[#161616] flex items-center shrink-0 select-none">
+                  <div className="w-full bg-neutral-900 border border-neutral-850 rounded-lg px-2.5 py-1.5 flex items-center justify-between text-neutral-500 hover:text-neutral-450 transition-colors text-[8px] cursor-text">
                     <span>Ask follow-up questions...</span>
                     <svg className="w-3.5 h-3.5 text-neutral-650" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
